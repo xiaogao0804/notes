@@ -7,4 +7,11 @@ react£ºVueµÄºËÐÄË¼ÏëÊÇÍ¨¹ýÊý¾Ý¿ØÖÆÊôÐÔ1. [React Error]: Target container is no
 
  Í¼4.png8.ÔÚº¯ÊýfunctionÀïÃæµÄthis²»Ö¸Ïò×é¼þµÄÁ½ÖÖ½â¾ö·½°¸£º  µÚÒ»ÖÖ£ºÔÚº¯ÊýºóÃæ¼Óthis
 Í¼5.png  µÚ¶þÖÖ£º½«this±£´æÒ»ÏÂ
-Í¼6.png
+Í¼6.png9.¸¸×é¼þ´«Êý¾Ý¸ø×Ó×é¼þ£¬²¢¸üÐÂÔ­À´µÄÎÄ±¾ÄÚÈÝ
+   (1).ÔÚ¸¸×é¼þÖÐÉèÖÃÊý¾Ý£¬²¢½«Òª´«µÝµÄÊý¾ÝÐ´ÔÚ¶ÔÓ¦µÄ<×Ó×é¼þ £¯>ÖÐ
+     Í¼7ÊÇÔÚ¸¸×é¼þÖÐÉèÖÃÒª´«µÝµÄÊý¾Ý
+      Í¼7
+
+
+  £¨2).ÔÚ×Ó×é¼þÖÐ½ÓÊÕÊý¾Ý£¬²¢¸üÐÂÄÃ³öÊý¾ÝäÖÈ¾Ò³Ãæ
+      Í¼8
