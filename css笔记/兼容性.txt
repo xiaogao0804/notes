@@ -1,1 +1,19 @@
-css:1.  ÏëÈÃÍâ²¿µÄdivÍ¸Ã÷£¬ÀïÃæµÄÄÚÈİ²»Í¸Ã÷£¬¾ÍÓÃrgba()µÄĞÎÊ½£¬²»ÄÜÓÃopacity2.ÒÑÖª¿í¶È,Í¨¹ıÉèÖÃposition:absolute,margin-leftÎª¿í¶ÈµÄ¸ºÒ»°ë/Users/lili1/Desktop/lili/ÎªÖª±Ê¼Ç/weizhibiji.txt.parent{position:relative;}.child{position:absolute;left:50%;width:150px;margin-left:-75px;}Î´Öª¿í¶È,Í¨¹ıÉèÖÃposition:absolute.parent{position:relative;}.child{position:absolute;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}3.   Í¼Æ¬Ö®¼äÎŞ¼äÏ¶img{     vertical-align:top;     display:block;  }
+ï»¿1.  æƒ³è®©å¤–éƒ¨çš„divé€æ˜ï¼Œé‡Œé¢çš„å†…å®¹ä¸é€æ˜ï¼Œå°±ç”¨rgba()çš„å½¢å¼ï¼Œä¸èƒ½ç”¨opacity
+
+2.å·²çŸ¥å®½åº¦,é€šè¿‡è®¾ç½®position:absolute,margin-leftä¸ºå®½åº¦çš„è´Ÿä¸€åŠ/Users/lili1/Desktop/lili/ä¸ºçŸ¥ç¬”è®°/weizhibiji.txt
+
+.parent{position:relative;}
+.child{position:absolute;left:50%;width:150px;margin-left:-75px;}
+
+æœªçŸ¥å®½åº¦,é€šè¿‡è®¾ç½®position:absolute
+
+.parent{position:relative;}
+.child{position:absolute;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+3.å›¾ç‰‡ä¹‹é—´æ— é—´éš™
+img{
+     vertical-align:top; 
+    display:block;
+  }
+
+4.history.back()è¿”å›ä¸Šä¸€é¡µï¼Œæœ‰äº›æ‰‹æœºå¯¹hashæ— æ•ˆï¼Œä½†æ˜¯go(-1)å¯¹æ‰€æœ‰çš„éƒ½æœ‰æ•ˆ

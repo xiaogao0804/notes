@@ -1,0 +1,81 @@
+1.子组件向父组件传递数据：
+
+    就是通过触发子组件的事件，在父组件中监听这个事件，即可获取子组件该事件的数据
+
+   总结一下：
+
+    子组件中需要以某种方式例如点击事件的方法触发一个自定义事件
+
+     将需要传的值作为$emit的第二个参数，该值将作为实参传给响应自定义事件的方法（$emit的第一个参数是监听事件的事件名）
+
+     在父组件中注册子组件，并在子组件标签上绑定对自定义事件的监听
+
+2.父组件向子组件传值
+
+    总结一下：
+  
+      子组件在props中创建一个属性，用以接收父组件传过来的值
+
+      父组件中注册子组件
+
+      在子组件标签中添加子组件props中创建的属性
+
+      把需要传给子组件的值赋给该属性
+
+3.this的指向问题
+
+    箭头函数里的this，指向的是定义时的函数
+
+    普通函数里的this，指向的是执行时的函数
+
+    所以：
+
+<script type="text/ecmascript-6">
+    import PublicHeader from '../header/header.vue'
+
+    console.log(this)   //在new <script type="text/ecmascript-6">
+    import PublicHeader from '../header/header.vue'
+
+    console.log(this)  //在new Vue(object)之外的this，指向的是这整个组件shouhuo.vue
+
+    export default {
+      name: 'shouhuo',
+      data () {
+        return {
+          name:"收货",
+          message:'',
+        }
+      },
+      components:{
+         PublicHeader
+      },
+      methods:{
+         number:function(){
+            console.log(this);    //在new vue()中的普通函数的this，指向的是调用之后的函数，执行时的函数
+         }
+          /*()=>{
+             console.log(this);     //箭头函数里的this，指向的是定义时的对象，即shouhuo.vue这整个组件
+           }
+         */
+      }
+    }
+</script>
+
+    export default {
+      name: 'shouhuo',
+      data () {
+        return {
+          name:"收货",
+          message:'',
+        }
+      },
+      components:{
+         PublicHeader
+      },
+      methods:{
+         number:function(){
+            console.log(this.$refs.tdNums.innerHtml);
+         }
+      }
+    }
+</script>
