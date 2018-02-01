@@ -1,0 +1,58 @@
+1.虚拟Dom:  （实现真实Dom对象的js对象）
+
+	Virtual	Dom是一个映射真实Dom的javascript对象。如果需要改变任何元素的状态，那么是先在Virtual Dom上进行改变，就是先改变
+	
+	对应的js，进而改变真实的Dom对象。当有变化产生时，一个新的Virtual Dom对象会被创建并计算新旧Virtual Dom之间的差别，之后
+
+	差别会应用在真实的Dom上。
+
+例子：
+
+   真实Dom的代码格式：
+
+   <ul	class="list">
+	
+	<li>item 1</li>
+
+	<li>item 2</li>
+
+   </ul>
+
+
+   虚拟Dom：（就是在JavaScript中，用对象简单的创造一个针对上面例子的映射)  本质是一个嵌套着数组的原生对象
+
+    {
+
+	type: "ul",															
+
+	props: {"class","list"},
+
+	children:[
+
+		{ type: 'li',props: { }, children:['item 1'] },
+
+
+		{ type: 'li',props: { }, children:['item 1'] },
+
+
+		]
+
+	}
+
+	
+	当新一项被加进去这个JavaScript对象时，一个函数会计算新旧差异并反映在真实的Dom上，计算诧异的算法是高性能框架的秘密所在。
+
+	Vue和react在计算此差异时略有不同：
+
+	Vue宣称	可以更快的计算出Virtual	Dom的差异，这是由于它在渲染过程中，会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树，
+
+	而对于react而言，每当应用的状态被改变时，全部子组件都会重新渲染。当然这个可以通过shouldComponentUpdate这个生命周期方法来进行控制，但Vue将其视为默认的优化。
+
+
+2.模板与jsx
+
+	vue鼓励去写近似常规HTML的模板，写起来很接近标准HTML元素，（vue在技术上也支持render函数和jsx，但是只是不是默认的而已）
+
+	react推荐所有的模板通用JavaScript的语法扩展---jsx书写	(jsx:遇到{ }就以js的方式解析，遇到<>就以HTML解析）
+
+		
