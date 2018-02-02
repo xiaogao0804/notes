@@ -46,7 +46,55 @@
 
 	Vue宣称	可以更快的计算出Virtual	Dom的差异，这是由于它在渲染过程中，会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树，
 
-	而对于react而言，每当应用的状态被改变时，全部子组件都会重新渲染。当然这个可以通过shouldComponentUpdate这个生命周期方法来进行控制，但Vue将其视为默认的优化。
+	而对于react而言，每当应用的状态被改变时，全部子组件都会重新渲染。当然这个可以通过shouldComponentUpdate这个生命周期方法来进行
+	控制，但Vue将其视为默认的优化。
+
+	
+	【
+	  shouldComponentUpdate:（默认渲染行为的问题）
+
+		在react	component的生命周期中，有一个shouldComponentUpdate方法，这个方法默认返回值是true，即：默认重绘。
+
+		这意味着就算没有改变组件的props或者state，也会导致组件的重绘，这就会经常导致组件本来没有任何变化，还是要重绘，
+	
+		这极大的降低了react的渲染效率。
+
+		
+	重写shouldComponentUpdate：
+
+		为了避免这个问题，我们可以在cell组件中重写shouldComponentUpdate方法，只在option发生改变时进行重绘：
+
+		class Cell extends React.Component {
+
+		   shouldComponentUpdate(nextProps, nextState) {
+
+			if (this.props.option === nextProps.option) {
+			
+			   return false;
+			
+			} else {
+
+			   return true;
+
+			}
+
+		    }
+
+		}	
+
+		以上代码可以避免重绘问题的发生。
+
+		需要注意的是：在使用shouldComponentUpdate时，需要保证该组件的整个子树的渲染输出都是由该组件的props所决定的，因为只有
+		保证组件的渲染输出是props决定的，才能利用shouldComponentUpdate的true或false来判断是否需要渲染。
+
+		在vue应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。
+
+
+		在解决这一问题时，react也可以通过PureComponent或者immutable.js来解决这一问题，但是PureComponent是浅比较，有一些及时变		
+		化了也不会重绘，所以用immutable.js。
+	
+
+		】
 
 
 2.模板与jsx
@@ -54,5 +102,6 @@
 	vue鼓励去写近似常规HTML的模板，写起来很接近标准HTML元素，（vue在技术上也支持render函数和jsx，但是只是不是默认的而已）
 
 	react推荐所有的模板通用JavaScript的语法扩展---jsx书写	(jsx:遇到{ }就以js的方式解析，遇到<>就以HTML解析）
+
 
 		
