@@ -1,0 +1,115 @@
+
+  分割：
+
+  split:以某个标志分割字符串为数组         join（）有相反的效果，将数组变成字符串
+
+          var a="www.baidu.com"; 
+
+	  a.split('.');   //['www','baidu','com']
+
+         
+
+
+   
+
+   截取：
+
+   slice[i,j]: i为开始截取的索引值，负数代表从末尾算起的索引值，-1代表倒数第一个     slice适合字符串和数组
+
+               j为结束的索引值，缺省是代表从i到末尾的所有字符
+
+		slice截取字符串
+
+               	var str='qbchsga';
+
+	        str.slice(0,3);  //qbc 
+
+
+		slice截取数组
+
+  		var arr=[1,2,3,4,5];
+
+		console.log(arr.slice(0,3));  //[1,2,3]
+
+
+    以下两种仅仅适合字符串
+
+     substring(start,stop): start为开始截取的索引值
+
+                            stop为结束的索引值
+
+                            str.substring(0,3);  //qbc
+
+
+
+
+     substr(start,length): start为字符串的开始位置
+
+                           length为截取字符串的长度
+
+
+                           str.substr(0,5);  //qbchs
+
+
+
+
+
+
+     
+
+
+    插入、删除或替换数组的元素
+
+    splice： 插入、删除或替换元素后，返回新数组   
+
+      （第一个数字是开始的位置，第二个数字是要删除或者替换的元素个数，如果第二个数字是0，就是替换；如果是具体的数字且后边没有新加元素就是删除，如果有新加元素就是替换）
+
+             添加：
+
+               var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+               fruits.splice(2,0,"Lemon","Kiwi");  //向数组的索引为2的位置上添加元素
+
+               //Banana,Orange,Lemon,Kiwi,Apple,Mango
+
+
+
+            替换：
+
+               var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+               fruits.splice(2,1,"Lemon","Kiwi");  //移除数组的索引为2的位置的1个元素，并在此位置上添加新元素
+
+               //Banana,Orange,Lemon,Kiwi,Mango
+
+
+            删除：
+
+              var fruits = ["Banana", "Orange", "Apple", "Mango"];
+ 
+              fruits.splice(2,2);   //删除索引为2的元素和之后的一个元素，包括索引为2的元素
+
+	      // Banana,Orange
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
