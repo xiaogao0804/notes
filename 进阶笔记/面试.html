@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 1.找出所有checkbox的元素 -->
+	<!-- <input type="checkbox">
+	<input type="checkbox">
+	<input type="checkbox">
+	<input type="checkbox">
+	<input type="checkbox">
+	 -->
+    
+    <!-- 2.设置 -->
+     <p id='p1'></p>
+
+
+
+	 </body>
+   <script>
+     //1
+     /*var inputs=document.getElementsByTagName('input');
+     var list=[];
+     var len=inputs.length;
+     while(len--){
+     	if(inputs[len].type=='checkbox'){
+     		list.push(inputs[len]);
+     	}
+     	alert(list);
+     }*/
+
+    
+    //2
+    /* var p1=document.getElementById('p1');
+     p1.innerHTML='加油  哈哈哈哈'; 
+     p1.style.color='red';*/
+
+     //3
+    /* var a;
+     alert(typeof a); //undefined  typeof的运算数未定义 所以undefined typeof 返回一个表示表达式的数据类型的字符串
+     alert(b); //报错  b is not defined */
+
+     //4
+     /*var a=null;
+     alert(typeof a); */  //object
+    
+
+    //5. 数字一边或两边是加号+ 就当是字符串拼接   如果是- 就当作数字相减
+ /*   var foo="11"+2+'1';        //如果是数字加上数字字符串 就都转化为字符串拼接
+    alert(foo);       //1121
+    alert(typeof foo);    //string
+
+    var foo="11"+2-'1';         //如果是数字减去数字字符串 就转化为数字加减
+    alert(foo);    //111   
+    alert(typeof foo);   //number
+
+    var foo="11"+2-'6';         //如果是数字减去数字字符串 就转化为数字加减
+    alert(foo);    //106   
+    alert(typeof foo);   //number*/
+
+
+    //6.引用数据类型考察  引用类型若是赋值 就是这两个元素a,b共用同一个内存地址，若是一个值变化了，另一个的值也跟着变化
+    //a和b有不同的栈内存 但是通过赋值 a和b有了相同的堆内存和相同的值
+    /*var a=new object();   //object是引用数据类型 所以a是引用数据类型 
+    a.value=1;
+    b=a;
+    b.value=2;
+    alert(a.value);    *///2
+
+    //7.
+     /*var stringArray=['this','is','Baidu','Campus'];
+     alert(stringArray.join(' '));*///array.join(分隔符，默认逗号)将数组中的所有元素转换为一个字符串
+
+     //8.split  substr  join
+    /* var foo='get-element-by-id';
+     function combo(msg){
+     	var arr=msg.split('-');   //split(分隔符)  将字符串转化为数组
+        for(var i=1;i<arr.length;i++){
+         	arr[i]=arr[i].charAt(0).toUpperCase()+arr[i].substr(1,arr[i].length-1);
+         }
+         msg=arr.join('');
+         return msg;         
+           alert(msg);
+     }
+     combo(foo);*/
+
+     //9.排序
+     //倒排
+     /*var numArray=[3,6,2,4,1,5];
+     alert(numArray.reverse());//倒排  
+     alert(numArray.sort(function(a,b){
+     	return b-a;      //降序
+     }));
+     alert(numArray.sort(function(a,b){
+     	return a-b;    //升序
+     }))*/
+
+
+    //10.输出今天的日期
+     // var d=new Date();    //调用时间对象
+     // var year=d.getFullYear();    //获取年
+     // var month=d.getMonth()+1;     //获取月 0是1月   11是12月
+     //     month=month<10?'0'+month:month;    //变成两位
+     // var day=d.getDate();
+     //     day=day<10?'0'+day:day;
+     // alert(year+'-'+month+'-'+day);
+
+     //11.正则替换
+      /*'<tr><td>{$id}</td><td>{$name}</td></tr>'.replace(/{\$id}/g,'10').replace(/{\$name}/g,'Tony'); */
+
+     //12.
+    /*  function escapeHtml(str){
+      	return str.replace(/[<>"&"]/g,function(match){
+      		switch(match){
+      			case '<':
+      			  return "&lt;";
+      			case '>':
+      			  return "&gt;";
+      			case '&':
+      			  return "&amp;";
+      			case '"':
+      			  return "&quot;";
+      		}
+      	})
+      }*/
+
+      //13.随机选取10-100之间的10个数字,存入数组并排序
+      /*var isArray=[];
+      function getRandom(isStart,isEnd){
+      	var iChoice=isStart-isEnd+1;
+      	return Math.floor(Math.random()*iChoice+isStart)
+      }
+      for(var i=0;i<10;i++){
+      	isArray.push(getRandom(10,100));
+
+      }
+      isArray.sort();*/
+
+
+      //14.数组合并 并删除第二项
+   /*   var arr1=['a','b','c'];
+      var arr2=['d','e','f'];
+      var arr3=arr1.concat(arr2);
+      arr3.splice(1,1);    //删除第二项*/
+
+   
+      //15.
+      var url='http://item.taobao.com/item.htm?a=1&b=2&c=&d=xxx&e';
+      function sss(url){
+      	var result={};
+      	url=url.split('?')[1];
+      	var map=url.split('&');
+      	for(var i=0;i<map.length;i++){
+      		result[map[i].split("=")[0]]=map[i].split("=")[1];
+      	}
+      	document.write(result);
+      }
+      sss(url);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </script>
+</html>

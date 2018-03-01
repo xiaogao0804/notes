@@ -1,0 +1,370 @@
+  data:{a:1}  里面放的是页面的数据 是以对象的方式存储的
+
+  methods:function(){}    是方法 就是效果 函数 触发事件时所执行的函数 效果
+
+  watch:{   
+    'a':function(){}     watch是监听数据变化 当数据a发生变化时执行的函数
+ }
+ 
+模板指令-html和vue对象的粘合剂
+  
+  数据渲染：v-text、v-html、{{}}   三者的用法基本相同 都是对应data里面的数据
+
+  控制模块隐藏：v-if、v-show  控制元素的显示隐藏
+
+  但是v-if不渲染该DOM元素  v-show 通过display来控制
+ 
+  渲染循环列表指令：v-for
+ 
+  事件绑定：v-on或@click=‘doThis’  doThis是methods里面的属性 不是data里面的
+
+  属性绑定：v-bind或：
+  
+  <div :class="{red:isRed}"></div>            class后面是对象时，red是class的名字 isRed是对是否有这个class名red的判断  data里面的isRed是true或false
+  
+  <div :class="[classA,ClassB]"></div>        class后面是数组时，classA和classB就是一个字符串，data里面是这样写的 classA:aaaa, classB:bbbb  是直接展现出来的  
+
+  <div :class="[classA,{classB:isB,classC:isC}]"></div>   
+
+总结：
+ 1.new一个vue对象的时候可以设置它的属性，其中最重要的包括3个：data  methods  watch
+
+ 2.其中data代表vue对象的数据     methods代表vue对象的方法    watch设置了对象监听的方式
+
+ 3.vue对象里的设置通过html指令进行关联
+ 
+ 4.重要的指令包括：
+    
+    v-text  渲染数据     v-if v-show   控制显示     v-on 绑定事件     v-for  循环渲染
+
+ 5.v-bind:
+ 
+   绑定attribute属性： <img v-bind:src='imgSrc'/>   缩写：<img :src='imgSrc'/>   
+
+   绑定class：  
+             
+  <div :class="{red:isRed}"></div>            class后面是对象时，red是class的名字 isRed是对是否有这个class名red的判断  data里面的isRed是true或false
+  
+  <div :class="[classA,ClassB]"></div>        class后面是数组时，classA和classB就是一个字符串，data里面是这样写的 classA:aaaa, classB:bbbb  是直接展现出来的  
+
+  <div :class="[classA,{classB:isB,classC:isC}]"></div> 
+
+  绑定style：
+
+  <div :style="{fontSize:size+'px'}"></div>
+
+  <div :style="[styleObjectA,styleObjectB]"</div>
+
+  绑定到一个对象： <div v-bind="{id:someProp,'othor-attr':otherProp}"</div>
+
+  prop绑定 prop必须在my-component组件内声明：<my-component :prop='someThink'></my-component>
+
+  双向prop绑定： <my-component :prop.sync='someThink'></my-component>
+  
+  单向prop绑定： <my-component :prop.once='someThink'></my-component>
+  
+ 6.v-on
+
+  方法处理器：<button v-on:click='doThid'></button>  缩写：<button @click='doThid'></button>
+
+  内联语句：<button v-on:click="doThat{'hello',$event}"></button>
+ 
+  停止冒泡：<button @click.stop='doThis'></button>
+
+  阻止默认行为：<button @click.prevent='doThis'><button>
+
+  阻止默认行为，没有表达式：<button @click.prevent><button>
+
+  串联修饰符：<button @click.stop.prevent='doThis'><button>
+
+  键修饰符，键别名：<button @keyup.enter='doThis'><button>
+
+  键修饰符，键代码：<button @keyup.13='doThis'><button>
+
+7.如何划分组件
+
+  功能模块--select，pagenation....
+  
+  页面区域--header，footer，sidebar...
+
+  vuejs组件之间的调用-另外一个重要选项-components
+
+  vuejs组件之间的通信-props
+
+  
+8.  vue.js只支持ie9以上的浏览器
+
+   what: mvvm框架  轻和巧  组件
+
+    how：  why:
+
+9.写超链接时 使用v-link  然后给链接的文件加上个name属性
+
+10.如何判断api的json数据是否能够用jsonp跨域 只要在api的地址后面加上？callback看看是否有回调就行了
+
+11.图片的循环需要用v-bind  v-bind：src="item.poster"
+
+12.vue组件的特点:可插拔 独立作用域  观察者模式  完整的生命周期
+
+    一个组件的基本构成：
+
+      Vue.component('child',{
+
+             props:['msg'],                 //props是从父级通过html特性传递来的数据，是单向的，也可以设置为双向绑定，props里的参数可以直接用this.msg调用，这与data离得
+
+             template:'<span>{{msg}}</span>',
+
+             data:function(){          //组件里的data是通过一个function来返回一个对象
+
+                   return {
+
+                        title:'TalkingColder'
+
+                       }
+             },
+ 
+             methods:{
+
+             },
+
+            ready:function(){
+
+             },
+
+            beforeDestroy:function(){
+          
+            },
+
+            events:{
+ 
+             }
+
+   });
+
+13.父组件使用了多个相同子组件，如何区分呢？比如我们上面的demo使用了两次child组件，但是如何来区分这两个呢，
+
+也就是说如果给child广播事件，如何给其中指定的一个广播呢，因为广播后，它俩都会接收到事件的。我们可以使用v-ref来标识组件
+
+  <child :msg="msg1" v-ref:child1></child>
+  <child :msg.sync="msg2"  v-ref:child2></child2>
+
+  new Vue({
+          data:{
+                 msg1:'Hello,TalkingColder',
+                 msg2:'你好，talkingcolder',
+               },
+          methods:{
+                  sendData:function() {
+                         this.$refs.child1.$emit('set-data',{});
+                          this.$refs.child2.$emit('set-data',{});
+                   }
+          
+           } 
+
+})
+通过$refs就可以给指定的组件触发事件了，事实上，通过$refs是可以获取到子组件的整个实例的。
+
+14.子组件派发事件，而父组件仍然使用了多个相同子组件，如何区分是哪个组件派发的呢？还是上面的demo，比如我们的child组件$dispatch了一个自定义事件，可以这样来区分：
+
+ <child :msg="msg1" v-ref:child1 @child-event="handler1"></child>
+ <child :msg.sync="msg2" v-ref:child2 @child-event="handler2"></child>
+
+new Vue({
+    data: {
+        msg1: 'Hello，TalkingCoder',
+        msg2: '你好，TalkingCoder'
+    },
+    methods: {
+        sendData: function() {
+            this.$refs.child1.$emit('set-data', {});
+            this.$refs.child2.$emit('set-data', {});
+        },
+        handler1: function() {
+            // ...
+        },
+        handler2: function() {
+            // ...
+        }
+    }
+})
+像绑定DOM2事件一样，使用@xxx或v-bind:xxx来绑定自定义事件，来执行不同的方法。
+
+15.内容分发 slot  也就是自组件向父组件传递内容
+
+标题、关闭按钮是统一的，但是中间正文的内容（包括样式）是想自定义的，这时候就会用到Vue组件的slot来分发内容。比如子组件的template的内容为：
+
+<div>
+    <h1>提示</h1>
+    <slot name="content"></slot>
+    <span>确定</span>
+    <span>取消</span>
+</div>
+父组件这样调用子组件：
+
+<confirm>
+    <p slot="content">欢迎来到TalkingCoder</p>
+</confirm>
+最终渲染完的内容为：
+
+<div>
+    <h1>提示</h1>
+    <p>欢迎来到TalkingCoder</p>
+    <span>确定</span>
+    <span>取消</span>
+</div>
+
+16.
+编写可复用组件
+这里引用一段来自vue.js文档的内容：
+
+在编写组件时，记住是否要复用组件有好处。一次性组件跟其它组件紧密耦合没关系，但是可复用组件应当定义一个清晰的公开接口。
+
+Vue.js 组件 API 来自三部分——prop，事件和 slot：
+
+prop 允许外部环境传递数据给组件；
+事件 允许组件触发外部环境的 action；
+slot 允许外部环境插入内容到组件的视图结构内。
+使用 v-bind 和 v-on 的简写语法，模板的缩进清楚且简洁：
+
+<my-component
+  :foo="baz"
+  :bar="qux"
+  @event-a="doThis"
+  @event-b="doThat">
+  <!-- content -->
+  <img slot="icon" src="">
+  <p slot="main-text">Hello!</p>
+</my-component>
+
+17.路由、组件和组件化
+上文说了那么多，现在终于到重点了。在上一篇文章中，我们简单的提到了组件化，这也是将Vue使用到极致的必经之路。我们先看一下src/main.js文件。
+
+Vue有点像Express的用法，也有中间件的概念，比如我们用到的vue-router，还有vuex，它们都是vue的中间件，当然我们自己也可以开发基于vue的中间件。
+
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from 'components/app.vue';
+import Env from './config/env';
+
+Vue.use(VueRouter);
+
+// 开启debug模式
+Vue.config.debug = true;
+
+// 路由配置
+var router = new VueRouter({
+    history: Env != 'production'
+});
+
+router.map({
+    '/index': {
+        name: 'index',
+        component: function (resolve) {
+            require(['./routers/index.vue'], resolve);
+        }
+    }
+});
+
+router.beforeEach(function () {
+    window.scrollTo(0, 0);
+});
+
+router.afterEach(function (transition) {
+
+});
+
+router.redirect({
+    '*': "/index"
+});
+router.start(App, '#app');
+以上代码就是main.js的内容，这也是我们项目跑起来后第一个执行的js文件。在导入了Vue和VueRouter模块后，使用Vue.use(VueRouter)安装路由模块。路由可以做一些全局配置，具体可以查看文档，这里只说一个就是history，上文已经介绍了关于HTML5的History，它用history.pushState()和history.replaceState()来管理历史记录，服务器需要正确的配置，否则可能会404。开启后地址栏会像一般网站那样使用“/”来分割，比“#”要优雅很多，可以看到我们通过环境模块env.js默认给开发环境开启了History模式路由，生产环境没有开启，为的是可以让大家来体验到这两者的差异性，使用者可以自己来修改配置。
+
+导入的app.vue模块就是我们的入口组件了，上篇文章已经介绍过，我们通过webpack生成的index.html里，body内只有一个挂载节点<div id="app"></div>，当我们通过执行router.start(App, '#app')后，app.vue组件就会挂载到#app内了，所以app.vue组件也是我们工程起来后，第一个被调用的组件，可以在它里面完成一些全局性的操作，比如获取登录信息啊，统计日活啊等等。
+
+在app.vue内，有一个<router-view></router-view>的自定义组件，它就是整个网站的路由挂载节点了，切换路由时，它的内容会动态的切换，其实是在动态的切换不同的组件，得益于webpack，路由间的切换可以是异步按需加载。
+
+router.map()就是设置路由匹配规则，比如访问127.0.0.1:8080/index，就会匹配到"/index"，然后通过component，在回调里使用require()异步加载组件，这个过程是可以改为同步的，不过应该没有人会这么做。vue-router支持匹配带参数的路由，比如'/user/:id'可以匹配到'/user/123'，或者'/user/*any/bar'可以匹配到'/user/a/b/bar'，:id是参数，*any是全匹配，不过vue-router支持的路由规则还是比较弱的，一般后端框架，比如Python的Tornado或者Node.js的Express是支持正则的。
+
+vue的路由只是动态的调用组件，根本上还是MVVM，而Angular的路由是MVC的，在ng的controller里，可以使用templateURL来使用一个html片段，而vue的组件是不支持这种模式的，必须把html字符串写（或编译）在template里，因为在Vue的设计里，一个组件（.vue文件）是应该把它的样式、html和js紧耦合的，这正是组件化的魅力所在。
+
+嵌套路由。vue-router是支持嵌套路由的，在app.vue里的<router-view>是我们的根路由挂载，如果需要，可以在某个具体的路由组件里面再使用一个<router-view>来分发二级路由。具体使用方法可查看文档。
+
+路径跳转。vue-router使用v-link指令来跳转，它会隐式的在DOM上绑定点击事件：
+
+<a v-link="{path: '/index'}">首页</a>
+<!--或者其他标签页可以-->
+<p v-link="{path: '/index'}">首页</p>
+如果是在js里跳转，可以这样：
+
+module.exports = {
+    data: function() {
+        return {
+
+        }
+    },
+    methods: {
+        go: function() {
+            console.log(this.$route);
+            console.log(this.$router);
+            this.$router.go('/index');
+        }
+    }
+}
+使用vue内置的$router方法也可以跳转，如果感兴趣，可以试试上面$route和$router打印出什么内容，通过$route是可以得到当前路由的一些状态信息的，比如路径和参数。
+
+vue-router还有一些钩子函数，通俗讲就是在发生一次路由时某个状态的一些回调。我们的项目main.js中使用了：
+
+router.beforeEach(function () {
+    window.scrollTo(0, 0);
+});
+
+router.afterEach(function (transition) {
+    console.log(transition);
+});
+beforeEach()是在路由切换开始时调用，这里我们将页面返回了顶端。
+
+afterEach()是在路由成功切换到激活状态时调用，可以打印出transition看看里面都有什么。一般在这里可以做像自动导航、自动面包屑的一些全局工作。
+
+router.redirect()很简单，就是重定向了，找不到路由时可以跳转到指定的路由。
+  
+
+
+ 
+   
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+   

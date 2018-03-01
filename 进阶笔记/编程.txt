@@ -1,0 +1,238 @@
+
+1.将url的查询条件？后面的写成对象的形式  split 将一个字符串分割成一个字符串数组
+
+  var url="https://hao.360.cn/?src=lm&ls=n130bfc8494";
+
+  var x=window.location.search.substr(1);   // src=lm&ls=n130bfc8494
+
+  var arr=x.split('&');   // ["src=lm","ls=n130bfc8494"]
+ 
+  for(var i=0;i<arr.length;i++){
+
+     arr[i]=arr[i].split('=');   //[ ["src","lm"],["ls","n130bfc8494"] ]
+
+}
+
+  var obj={};
+
+  arr.forEach(function(item){
+
+     obj[item[0]]=item[1];
+
+  })
+    return obj;
+
+2.数组去重
+
+ 最好的方法：检查json中的键，如果没有这个键，就把该键push到新数组中，并赋值给键键值；
+
+ var arr=[8,8,9,9,6,6,7,7];
+
+  Array.prototype.unique=function(){
+
+    var res=[];
+    
+    var json={};
+
+    for(var i=0;i<this.length;i++){
+
+      if(!json[this[i]]){
+
+       res.push(this[i]);
+
+       json[this[i]]=1;  
+
+     }
+
+  }
+  
+   return res;
+
+}
+  
+   alert(arr.unique());
+
+ 方法一：双for
+
+   var arr=[8,8,9,9,6,6,7,7];
+
+   function unique(arr){
+
+    var newArr=[];
+
+     for(var i=0;i<arr.length;i++){
+
+       for(var j=i+1;j<arr.length;j++){
+
+          if(arr[i]===arr[j]){ i++; }    //获取没重复的最右一值放入新数组
+
+      }
+          newArr.push(arr[i]);
+
+   }
+      return newArr;
+
+}
+
+方法二：es6
+
+  var arr=[1,1,2,2,3,3,4,4,5,5];
+
+  var s=new Set();
+
+  arr.map(x=>s.add(x));
+
+  console.log(s);  //{1,2,3,4,5}
+
+  for(i of s) {console.log(i)};  //1 2 3 4 5
+
+
+  方法三：
+
+   Array.prototype.unique = function () {
+      var newArr = [];
+      for (var i = 0; i < this.length; i++) {
+          if (newArr.indexOf(this[i]) == -1) {
+              newArr.push(this[i]);
+          }
+      }
+      return newArr;
+  }
+ var arr = ['a','b',1,4,5,8,4,3,1,'a','1'];
+ alert(arr.unique());//a,b,1,4,5,8,3,1  indexOf默认调用===,因此将1与'1'认为是不同
+   
+3.promise写ajax
+
+   function ajax(url,data){
+
+    return new Promise(function(resolve,reject){
+
+       $.ajax({
+
+            url:url,
+           
+            type:"post",
+
+            data:data,
+
+            success(res){
+
+              resolve(res)
+
+           },
+ 
+           error(){
+
+             reject()
+
+           }
+ 
+
+      })
+
+   })
+
+ }
+
+调用：ajax().then(function(res){},function(err){}).then().then()
+
+3.状态锁
+
+   function ajax(url,data){
+
+    return new Promise(function(resolve,reject){
+
+        if(q_requsetstate==1){
+
+           return false;      //如果是1  说明被锁了  下边的代码buzai执行  不会再次发送请求        
+
+        }
+
+       $.ajax({
+
+           beforeSend:function beforeSend(XMLHttpRequest){
+             
+              q_requsetstate=1;       //如果是正在发送请求，就让q_requsetstate=1;  这样经上边的if判断，就会阻止下边的程序执行
+
+         }
+
+            url:url,
+           
+            type:"post",
+
+            data:data,
+
+            success(res){
+
+              q_requsetstate=0；  //发送成功后，再改为0，再点击的时候就可以发送了
+
+              resolve(res)
+
+           },
+ 
+           error(){
+
+             reject()
+
+           }
+ 
+
+      })
+
+   })
+
+ }
+
+4.html中是li列表，内容是后台数据加载的，需要前端做一个控制页面，显示li数量，并且分页显示，刷出该页的数据
+
+  答案：创建webService.asmx,在里面写一个方法，前台用ajax post值
+
+    function fn(){
+
+      var megr="0|0";
+
+      $.ajaxSetup({async:false,cache:false});
+
+      $.ajax({
+
+          type:"post",
+
+          contentType:"application/json;charset=utf-8",
+
+          url:"webService.asmx/分页方法名"，
+
+          data: "{参数名"+参数值+"}",  //方法需要的参数
+
+          dataType:'json',
+
+          success:function(result){
+
+            megr=result.d;
+
+          },
+
+          error:function(){}
+
+     })
+
+        return megr;
+
+}
+
+5.冒泡排序
+
+   var times=0;  
+var bubbleSort=function(arr){  
+    for(var i=0;i<arr.length-1;i++){  
+        for(var j=i+1;j<arr.length;j++){  
+            if(arr[i]>arr[j]){//如果前面的数据比后面的大就交换  
+                var temp=arr[i];  
+                arr[i]=arr[j];  
+                arr[j]=temp;  
+            }  
+        console.log("第"+(++times)+"次排序后："+arr);  
+        }  
+    }   
+    return arr;  
+}  
+console.log("The result is:"+bubbleSort(arr));  

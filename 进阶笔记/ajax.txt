@@ -1,0 +1,81 @@
+与后台交互中遇到的问题：
+
+  1.多个ajax回调地狱 就是ajax嵌套
+
+  解决方法：用promise重写
+
+   //创建一个Promise实例，获取数据。并把数据传递给处理函数resolve和reject。需要注意的是Promise在声明的时候就执行了。
+var getUserInfo=new Promise(function(resolve,reject){
+    $.ajax({
+        type:"get",
+        url:"index.aspx",
+        success:function(data){
+            if(data.Status=="1"){
+                resolve(data.ResultJson)//在异步操作成功时调用
+            }else{
+                reject(data.ErrMsg);//在异步操作失败时调用
+            }
+        }
+    });
+})
+//另一个ajax Promise对象，
+var getDataList=new Promise(function(resolve,reject){
+    $.ajax({
+        type:"get",
+        url:"index.aspx",
+        success:function(data){
+            if(data.Status=="1"){
+                resolve(data.ResultJson)//在异步操作成功时调用
+            }else{
+                reject(data.ErrMsg);//在异步操作失败时调用
+            }
+        }
+    });
+})
+//Promise的方法then,catch方法
+getUserInfo.then(function(ResultJson){
+    //通过拿到的数据渲染页面
+}).catch(function(ErrMsg){
+    //获取数据失败时的处理逻辑
+})
+//Promise的all方法，等数组中的所有promise对象都完成执行
+Promise.all([getUserInfo,getDataList]).then(function([ResultJson1,ResultJson2]){
+    //这里写等这两个ajax都成功返回数据才执行的业务逻辑
+})    
+
+  2.避免xss攻击（xss能在你的页面中引入其他地方的js)
+
+  解决方法：所有输入都将过滤script标签
+
+function stripscript(str){
+	if(str == undefined){
+		return '';
+	}
+	str = str+'';
+	if(str.length <= 0){
+    	return '';
+	}
+	
+	// str = str.toLowerCase();
+	if(str.indexOf('<script') >= 0 ){
+		str =  str.replace(/<script.*?>.*?<\/script>/ig,'');
+    	str =  str.replace(/<script.*?>/ig,'');
+	}
+
+	if(str.indexOf('</script>') >= 0){
+		str =  str.replace(/<\/script>/ig,'');
+	}
+	return str;
+}
+
+  3.接受字符串时前后也许会多出一个空格 就不能转为JSON了
+
+  解决方法：使用trim清楚掉
+
+  4.JQ的ajax发送纯数组会全部变成undefined，混合开发才会出现的问题
+
+  解决方法：自己封装AJAX呗。
+
+
+
+    

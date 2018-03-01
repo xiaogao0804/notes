@@ -1,0 +1,119 @@
+怎么处理兼容性问题。
+    
+     通过js各种判断和hack和降级之类的你所知道的尽可能多的方法。
+
+css兼容：
+
+1.图片默认有间距 几个img标签放在一起的时候，有些浏览器会有默认的间距，加了问题一中提到的通配符也不起作用。
+
+   解决方案：使用float属性为img布局
+
+2.标签最低高度设置min-height不兼容  
+
+   解决方案：如果我们要设置一个标签的最小高度200px，需要进行的设置为：
+
+   {min-height:200px; height:auto !important; height:200px; overflow:visible;}
+
+
+移动端兼容：
+
+1.ios上的下拉框会有圆角，所以要写border-radius:0
+
+2.弹层的关闭事件容易触发弹层关闭后下一层的事件所以要给弹层关闭事件加上event.preventDefault()
+ 
+3.iphone及ipad下输入框默认内阴影：设置 -webkit-appearance:none;
+
+4. IOS移动端click事件300ms的延迟响应： 
+   
+    zepto的touch模块，tap事件也是为了解决在click的延迟问题；
+
+    fastclick可以解决在手机上点击事件的300ms延迟
+
+5.一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发，css增加cursor:pointer就搞定了
+
+6.在ios和andriod中,audio元素和video元素在无法自动播放
+
+ $('html').one('touchstart',function(){
+    audio.play()
+  })
+
+7.某些Android手机圆角失效：设置background-clip:
+ padding-box;
+
+8.active兼容处理 即 伪类 :active 失效  设置：<body ontouchstart="">
+
+9.安卓手机视频用object  苹果apple用video，再用js控制
+
+在iphone6/6plus 中，用for..in 遍历数组时会遍历2遍，所以用for..i..
+
+date时间对象也有一个bug，具体细节忘记了
+
+在安卓中，alert时，其他的操作还可以进行，ios不可以
+
+js兼容：
+
+1.集合类对象问题 
+
+  IE下，可以使用 () 或 [] 获取集合类对象；   Firefox下，只能使用 [ ]获取集合类对象。 
+
+   解决方法：统一使用 [] 获取集合类对象。
+
+2.event.x与event.y问题 
+
+   IE下，even对象有x、y属性，但是没有pageX、pageY属性；Firefox下，even对象有pageX、pageY属性，但是没有x、y属性
+
+    解决方法：var myX = event.x ? event.x : event.pageX; var myY = event.y ? event.y:event.pageY; 
+
+    如果考虑第8条问题，就改用myEvent代替event即可
+   
+3.访问的父元素的区别 
+
+   在IE下，使用 obj.parentElement 或 obj.parentNode 访问obj的父结点；在firefox下，使用 obj.parentNode 访问obj的父结点。 
+
+   解决方法：因为firefox与IE都支持DOM，因此统一使用obj.parentNode 来访问obj的父结点。 
+
+4.阻止默认事件
+
+ function stopDefault( e ) {
+
+    // 阻止默认浏览器动作(W3C)
+
+    if ( e && e.preventDefault ) {
+
+        e.preventDefault();
+
+    } else {
+
+        // IE中阻止函数器默认动作的方式
+
+        window.event.returnValue = false;
+
+    }
+
+    return false;
+
+}
+
+5.阻止事件冒泡
+
+  function stopBubble(e) {
+
+    // 如果提供了事件对象，则这是一个非IE浏览器
+
+    if ( e && e.stopPropagation ) {
+
+        // 因此它支持W3C的stopPropagation()方法 
+
+        e.stopPropagation();
+
+    } else {
+
+        // 否则，我们需要使用IE的方式来取消事件冒泡
+
+        window.event.cancelBubble = true;
+
+    }
+
+}
+
+   

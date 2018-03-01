@@ -1,0 +1,40 @@
+1.浏览器：IE safary firefox chrome opera
+   内核：trident webkit gecko presto
+
+2.行内元素：会在水平方向排列，不能包含块级元素，设置width无效，height无效(可以设置line-height)，margin上下无效，padding上下无效。
+  块级元素：各占据一行，垂直方向排列。从新行开始结束接着一个断行。
+
+  行内块元素的兼容性:display:inline-block;*display:inline;*zoom:1;
+
+3.清除浮动:
+（1）父级div定义height。
+（2）结尾处加空div标签clear:both。
+（3）父级div定义伪类:after和zoom。
+（4）父级div定义overflow:hidden。
+（5）父级div定义overflow:auto。
+（6）父级div也浮动，需要定义宽度。
+（7）父级div定义display:table。
+（8）结尾处加br标签clear:both。
+
+4.如何处理HTML5新标签的浏览器兼容问题?
+IE8/IE7/IE6支持通过document.createElement方法产生的标签，
+可以利用这一特性让这些浏览器支持HTML5新标签，
+浏览器支持新标签后，还需要添加标签默认的样式。
+当然也可以直接使用成熟的框架、比如html5shim;
+<!--[if lt IE 9]>
+<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+<![endif]-->
+
+5.HTML5和HTML的区别：
+　　1、在文档类型声明上
+　　HTML声明：<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+　　<html xmlns="http://www.w3.org/1999/xhtml">
+　　HTML5声明：<!doctype html>
+　　上面的两种声明,HTML5声明简洁方便人们的记忆，HTML声明太长了并且很难记住这段代码。
+　　2、在结构语义上
+　　HTML:没有体现结构语义化的标签，通常都是这样来命名的<div id="header"></div>，这样表示网站的头部。
+　　HTML5:在语义上却有很大的优势，提供了一些新的HTML5标签比如: article、footer、header、nav、section，这些通俗易懂。
+
+6.js有哪些内置对象？
+数据封装类对象：Object、Array、Boolean、Number 和 String
+其他对象：Function、Arguments、Math、Date、RegExp、Error

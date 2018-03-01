@@ -1,0 +1,41 @@
+ 1.注释：
+       //  这种注释在编译时会被去掉
+ 
+       /* */  这种注释不会被去掉
+
+2.变量：
+
+      less中写变量时用 @名字：属性值
+
+3.混合：
+
+      就是将类名加到需要加样式的类名里；
+
+       带参数 带括号；
+
+       带默认值
+
+4.匹配模式：
+
+          三角形写法：.sanjiao{width:0;height:0;overflow:hidden;border-width:10px;
+
+                               border-color:transparent transparent red transparent;
+
+                                border-style:dashed dashed solid dashed}
+
+5.运算：
+
+       
+6.嵌套：
+
+7.arguments参数
+
+8.避免编译：
+
+         width：~‘calc(300px-30px)';   加~’‘  不会编译 原样输出
+
+9.！important
+ 
+
+      
+

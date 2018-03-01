@@ -1,0 +1,142 @@
+
+js:
+
+1.对象深复制
+
+   var obj={ a:1, b:2 }
+
+   var str=JSON.stringify(obj);
+
+   var json=JSON.parse(str);
+
+2.数组深复制
+
+   var a=[1,2,3,4,5]
+
+   var b=[];
+
+   b=a.slice(0);  //从已有的数组中返回选定的元素
+
+3.attr和prop的区别
+
+官方：对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。
+      对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法。
+
+自己：prop用于获取表单元素，checked或radio属性   attr除了这两个 其他都行   
+
+4.在功能方面注意的问题，拿表单来说：
+
+  第一：要用prop获取checked或radio属性的值
+
+  第二：为了避免重复提交，发送ajax请求时需要加状态锁
+
+5.在提交表单数据时，如果用form里面的action，提交表单后页面就会跳转到action对应的页面；
+
+  所以如果不想跳转页面，就要用ajax或ajaxSubmit提交
+   
+6.前端怎么调用后台接口
+
+前端跟后端对接是由后端做接口，类似一个链接，前端通过ajax调用接口，然后根据调用接口，获得的数据，赋值。
+
+7.与后台的交互方式 submit和ajax
+
+   input只有设置为submit时，才能与后台交互，设置button时，不能与后台交互
+
+8.display:none  元素位置不存在了
+
+  visibility: hidden   元素位置还存在  所以即使元素隐藏了  也会获取到dom元素
+
+9.document.querySelector()  获取所有类名或元素中的第一个  ======  document.querySelectorAll()[0]
+
+  document.querySelectorAll()  获取所有类名或元素
+
+
+10.实时刷新：
+
+    a:ajax轮回，就是定时器每隔1s发送一次ajax
+
+   b:WebSocket(全双工通信):允许服务器主动发送信息给客户端
+
+11.iphone 6s/6sp中 如果用for..in..遍历数组，会遍历两遍，所以，不能用for..in.. ，需要用for..i..
+
+
+12.UC也是用的chrome内核的变种，但是有自己的兼容特效，在使用Vue时不能绑定未声明的特性
+
+
+
+
+
+
+
+vue问题：
+
+  1.所有的属性必须写在data中原因
+
+  2.vuex
+
+  3.混合 插件
+
+  4.箭头函数中的this指向问题
+
+   5.promise
+
+  6.数据流向：
+       1.actions中用ajax请求获取到数据；
+       2.在actions中调用mutations中的方法；
+       3.在mutations中，更新state；
+       4.路由组件获取新的state；
+       5.路由组件将更新后的数据，传递给子组件。
+       6.子组件渲染数据。
+
+
+js：
+
+  1.ios中1px的解决方法
+
+    可以用小数
+
+  或
+
+    .line{
+
+      position:relative;
+
+  }
+   
+    .line:after{
+
+        display:block;
+      
+        position:absolute;
+
+        left:0;
+
+        bottom:0;
+
+        border-top:1px solid red;
+
+        content:' ';
+ }
+
+   用@media进行分类  在不同尺寸的app里缩放不同的比例
+
+  .line::after{
+ 
+       -webkit-transform:scaleY(0.7);
+     
+       transform:scaleY(0.7);
+
+}
+  2.video在安卓中会有问题
+
+  3.tmpl
+
+
+  5.你发送一次请求，告诉PHP你要请求的页面，后面的page=2是查询条件，PHP根据这个把数据从数据库拿出来发送给你，跳转也是请求。
+  
+  6.post与get的区别及原因
+
+  7.mvvm
+
+
+  
