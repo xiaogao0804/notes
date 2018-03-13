@@ -1,0 +1,123 @@
+   vue嵌套路由
+  
+  给me.vue添加嵌套路由，也叫子路由
+
+  重构router/index.js的路由配置，需要使用children数组来定义子路由，具体如下：
+
+    import Vue from 'vue'
+    import Router from 'vue-router'
+    import Home from '@/Home'
+    import Brand from '@/Brand'
+    import Member from '@/Member'
+    import Cart from '@/Cart'
+    import Me from '@/Me'
+
+    import Collection from '@/Collection'
+    import Trace from '@/Trace'
+    import Default from '@/Default'
+
+   Vue.use(Router)
+
+export default new Router({
+  // mode: 'history',
+  // base: __dirname,
+  // linkActiveClass: 'active', // 更改激活状态的Class值
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/brand',
+      name: 'Brand',
+      component: Brand
+    },
+    {
+      path: '/member',
+      name: 'Member',
+      component: Member
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: Cart
+    },
+    {
+      path: '/me',
+      name: 'Me',
+      component: Me,
+      children: [                     //子路由
+        {
+          path: 'collection',
+          name: 'Collection',
+          component: Collection
+        },
+        {
+          path: 'trace',
+          name: 'Trace',
+          component: Trace
+        }
+      ]
+    }
+  ]
+})
+
+以“/”开头的嵌套路径会被当作根路径，所以子路由上不用加“/”;
+
+在生成路由时，主路由上的path会被自动添加到子路由之前，所以子路由上的path不用在重新声明主路由上的path了。
+
+    
+
+   Me.vue的代码如下：
+
+         <template>
+  <div class="me">
+    <div class="tabs">
+      <ul>
+        <!--<router-link :to="{name: 'Default'}" tag="li" exact>默认内容</router-link>-->  //如果需要渲染一些默认内容，需要在children中添加一个空的子路由：
+        <router-link :to="{name: 'Collection'}" tag="li" >我的收藏</router-link>
+        <router-link :to="{name: 'Trace'}" tag="li">我的足迹</router-link>
+      </ul>
+    </div>
+    <div class="content">
+      <router-view></router-view>
+    </div>
+  </div>
+</template>
+<script type="text/ecmascript-6">
+
+</script>
+<style lang="less" rel="stylesheet/less" type="text/less" scoped>  //由于各个组件中有相同的类名，所以用scoped此处的类名只能在这个组件中使用
+  .me{
+    .tabs{
+      & > ul, & > ul > li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      & > ul{
+        display: flex;
+        border-bottom: #cccccc solid 1px;
+        & > li{
+          flex: 1;
+          text-align: center;
+          padding: 10px;
+          &.router-link-active {
+            color: #D0021B;
+          }
+        }
+      }
+    }
+  }
+</style>
+
+
+
+  如果需要渲染一些默认内容，需要在children中添加一个空的子路由：
+
+{  
+      path: '',  
+      name: 'Default',  
+      component: Default  
+}, 

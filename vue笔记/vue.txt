@@ -1,0 +1,125 @@
+1.vue.component来定义全局组件，紧接着用new vue（{el:"#containt"}）在每个页面内指定一个容器元素 ；
+
+2.<div id="app">
+    <ul>
+       <li v-for="item in items">
+          {{item.text}},
+          {{item.msg}}
+          
+       </li>
+    </ul>
+</div>
+
+
+new Vue({
+  el: '#app',
+  data: {
+     items:[                            //items是个数组，里面的元素是对象
+        {text:'haha',msg:"hehe"},
+        {text:'hh',msg:"ll"},
+        {text:'aa',msg:"oo"}
+      
+     ]
+  }
+})
+
+
+
+
+
+3.vue反转
+
+<div id="app">
+   <p>{{msg}}</p>
+   <button @click="fn">点击</button>
+</div>
+
+
+new Vue({
+  el: '#app',
+  data: {
+      msg:'hello.lili!'
+  },
+  method(){
+     fn:function(){
+        this.msg=this.msg.split('').reverse().join();
+     }
+  }
+})
+
+
+4.组件
+
+
+<div id="app">
+  <ul>
+    <item-todo 
+      v-for="item in list"
+      v-bind:todo="item"
+     v-bind:key="item.id"
+    >  
+    </item-todo>
+  </ul>
+</div>
+
+
+
+
+Vue.component('item-todo',{
+   props:['todo'],
+   template:"<li>{{todo.text}}</li>"
+})
+
+
+new Vue({
+  el: '#app',
+  data: {
+      list:[
+         {id:0,text:0},
+         {id:1,text:1},
+      {id:2,text:2}
+      ]
+  }
+})
+
+
+5.vue-router动态路由
+   
+    例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。那么，我们可以在 vue-router 的路由路径中使用『动态路径参
+
+数』（dynamic segment）来达到这个效果：
+ 
+	const User = {
+	  template: '<div>User</div>'
+	}
+
+	const router = new VueRouter({
+	  routes: [
+	    // 动态路径参数 以冒号开头
+	    { path: '/user/:id', component: User }  //即在router目录下的index.js文件中，对path属性加上/:id
+	  ]
+	})
+
+
+	一个『路径参数』使用冒号 : 标记。当匹配到一个路由时，参数值会被设置到 this.$route.params，可以在每个组件内使用。于是，我们可以更新
+
+ User 的模板，输出当前用户的 ID：
+
+	const User = {
+	  template: '<div>User {{ $route.params.id }}</div>'
+	}
+
+
+   如何获取传过来的动态参数id？
+ 
+   使用router对象的params.id,动态获取id
+
+   
+   扩展：使用this.$route.params获取到键值对的对象，如:路径是/user/:username ，则this.$route.params是{ username: 'evan' }
+
+         路径是/user/:username/post/:post_id ，则this.$route.params是{ username: 'evan', post_id: 123 }
+
+
+         $route.query获取URL中的查询条件
+
+         $route.hash获取哈希值

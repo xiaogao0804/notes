@@ -1,0 +1,48 @@
+
+1.当N个元素浮动后，会导致错位的问题。一般给元素一个固定的height就没有这个现象。 
+  
+  但是当高度不一致时，就需要想别的办法来解决了： 
+    
+   (1). 给父元素定义font-size:0; 浮动子元素定义需要的font-size， 再定义display:inline-block;vertical-align:top; 
+
+                  ul{ 
+                       margin:0; 
+                       padding:0; 
+                       list-style-type:none; 
+                       font-size:0; 
+                           } 
+
+
+                   ul li{ 
+                       width:160px; 
+                       display:inline-block; 
+                       vertical-align:top; 
+                       font-size:12px; 
+                           } 
+
+
+
+   (2)、给换行后的第一个li添加clear:left 如： 
+ 
+                   ul li{float:left;width:160px;} 
+                   .c{clear:left;} 
+		    <li>1</li> 
+		    <li>2</li> 
+		    <li>3</li> 
+		    <li class="c">4</li> 
+		    <li>5</li> 
+		    <li>6</li> 
+
+
+2.高度不同的图片排在一行错位解决办法？
+
+    将6张图片全部放到一个容器中，设置容器position为relative
+    然后固定6张图片的宽和高，并设置其position为absolute
+    根据排列，依次设置每一个图片的left和top属性，固定其位置
+    然后，将最外层的容器放置到页面想要的位置
+    这种做法在各个不同的浏览器中应该是不会造成太大的表现差异的
+    至于缩放的话，可能就需要js获取一些信息来计算每一个图片的高和宽，以及其left和top，但css应该和上面是差不多的
+
+3.子元素div 上下左右居中方法总结
+
+   https://www.cnblogs.com/malvina/p/5715751.html
