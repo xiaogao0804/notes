@@ -29,9 +29,9 @@
 
 10.深复制和浅复制的方法与作用
 
-   深复制：是新开辟一个内存空间    方法：object.assign()、 for循环、JSON.stringefy(),JSON.parse()
+   深复制：是新开辟一个内存空间    方法：for循环、JSON.stringefy(),JSON.parse()
 
-   浅复制：是复制和被复制对象指向同一个内存  方法：直接用=就好了
+   浅复制：是复制和被复制对象指向同一个内存  方法：直接用=就好了   object.assign()
 
 11.为什么用promise ？  
 

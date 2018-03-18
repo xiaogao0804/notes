@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<style>
+  	/*错误写法*/
+/*  		#aside{
+  			width: 200px;
+  			float: left;
+  			background-color: red;
+  		}
+  		#content{
+  			background: blue;                    错误原因：块元素在不指定宽度的情况下是整屏宽度的，会在左边元素的下边，所以这样不行
+  			float: left;
+  		}
+   		#right{
+  			width: 200px;
+  			float: right;
+  			background-color: red;
+  		}*/
+
+
+  	/*这种写法*/
+/*  		#aside{
+  			width: 200px;
+  			float: left;
+  			background-color: red;
+  			margin-right: -200px;     利用marin负值可以使得，后面的div可以与前面的div 保持同行显示。
+  		}
+  		#content{
+  			background: blue;                  
+  			float:left;
+  			margin-left:200px;       如果不加margin-left和margin-right,中间的元素会覆盖两边的元素
+  			margin-right:200px;
+  		}
+   		#right{
+  			width: 200px;
+  			float: right;
+  			background-color: red;
+  			margin-left: -200px;
+  		}*/
+
+
+  		#aside{
+       		floate: left;
+	 	    width: 200px;
+	 	    background-color: red;
+		}
+		#content{
+   			 floate: left;
+    		calc(100% - 200px);
+    		background: blue; 
+			}
+		#right{
+       		floate: right;
+	 	    width: 200px;
+	 	    background-color: red;
+		}
+  	</style>
+  </head>
+  <body>
+  	  <div id="aside">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore provident dolor in voluptatum tempore non, placeat obcaecati totam ut delectus libero excepturi distinctio asperiores odit nobis soluta, esse aspernatur beatae.
+</div>
+<div id="content">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore provident dolor in voluptatum tempore non, placeat obcaecati totam ut delectus libero excepturi distinctio asperiores odit nobis soluta, esse aspernatur beatae.
+</div><!-- 
+<div id="right">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore provident dolor in voluptatum tempore non, placeat obcaecati totam ut delectus libero excepturi distinctio asperiores odit nobis soluta, esse aspernatur beatae.
+</div> -->
+  </body>
+  </html>
+
+
+  <!-- 即使块元素是浮动元素，如果没有设置宽度，这个元素还是整屏元素，即使前后两个元素都浮动，第二个元素，也会下移一行，因为是整屏宽度 
+
+     http://blog.csdn.net/u011456552/article/details/72936988
+
+
+
+  -->
