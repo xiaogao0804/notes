@@ -62,6 +62,16 @@ js:
 
 12.UC也是用的chrome内核的变种，但是有自己的兼容特效，在使用Vue时不能绑定未声明的特性
 
+13.每个对象都有__proto__属性，每个函数都有prototype属性， 
+
+   但是函数对象有prototype,其他对象没有prototype, 函数也是对象，所以函数也有__proto__
+
+    所以函数和对象都有__proto__,  函数对象有prototype
+
+    var o = new Obj()
+
+   那么： o.__proto__ === Obj.prototype
+
 
 
 
