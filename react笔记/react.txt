@@ -1,23 +1,0 @@
-react£ºVueµÄºËÐÄË¼ÏëÊÇÍ¨¹ýÊý¾Ý¿ØÖÆÊôÐÔ1. [React Error]: Target container is not a DOM element´íÎóÔ­Òò£º ×Ó×é¼þÃ»ÓÐ±»div¿é°ü×¡£¬ÐèÒª½«×Ó×é¼þ·ÅÔÚdivÄÚ2.Uncaught Error: Invariant Violation: createClass(...): Class specification must implement a `render` method´íÎóÔ­Òò£ºdocument.getElementById('')  °óÔÚÁËÐéÄâdomÉÏ£¬Ó¦¸Ã°óÔÚÕæÊµdomÉÏ3.Í¼Æ¬ ´íÎó  ´íÎóÔ­Òò£ºÃ»ÓÐ°²×°url-loader  file-loader ,ÐèÒª°²×°ÉÏ
-1.renderµÄµÚ¶þ¸ö²ÎÊý£¬document.getElementById('')   ±ØÐë°ó¶¨ÔÚdomÔªËØÉÏ£¬²»ÄÜ°ó¶¨ÔÚÐéÄâdomÉÏ2.Èç¹û×é¼þ½á¹¹ÊÇÒ»ÑùµÄ£¬ÀïÃæµÄÖµ²»Ò»Ñù£¬¿ÉÒÔ¸ø¸¸×é¼þ¼ÓÒ»¸ö×Ô¶¨ÒåÊôÐÔ£¬Õâ¸öÊôÐÔµÄÖµ¾ÍÊÇ¶ÔÓ¦µØ·½µÄ×Ó×é¼þµÄÄÚÈÝ
-
- Í¼1 3.¶ÔÓÚÑ­»·µÄÊý×é£¬ÔÚÑ­»·µÄÊ±ºòÐèÒª¸øÃ¿¸öÑ­»·µÄdom¼ÓÒ»¸ökeyÖµ4.ÔÚ¸¸×é¼þ¸ø×Ó×é¼þ´«µÝÖµµÃÊ±ºò£¬Èç¹û´«µÝµÄÖµÊÇÎÄ×Ö£¬Ö±½ÓÓÃË«ÒýºÅÐ´£¬Èç¹ûÊÇÒÔ±äÁ¿ÃüÃûµÄÊý×é»òÕßÊÇ¶ÔÏó£¬ÐèÒªÓÃ Ä£°åÒýÇæ{ }5.ÔÚ×é¼þÖÐÐ´´øÃûº¯ÊýÊ±£¬º¯ÊýÀïÃæµÄthisÖ¸µÄÊÇÕâ¸öº¯Êý£¬²»ÊÇ×é¼þ±¾Éí£¬ËùÒÔÐèÒª×ª»¯
-
- Í¼26.<li key={i} onChange={()=>{this.handleChange}}>{item}</li> //ÕâÀïµÄthisÖ¸Ïò×é¼þ <li key={i} onChange={this.handleChange}>{item}</li>    //ÕâÀïµÄthisÖ¸ÏòliÕâ¸öÔªËØ7.react µÄÏÔÊ¾Òþ²Ø£ºÍ¨¹ý¿ØÖÆ×Ô¶¨ÒåÊôÐÔµÄfalseºÍtrue£¬À´¿ØÖÆÏÔÊ¾Òþ²ØÔªËØµÄÀàÃû£¬À´´ïµ½ÏÔÊ¾Òþ²ØµÄÐ§¹û  Õâ¾ÍÊÇË«Ïò°ó¶¨£¬Í¨¹ý¿ØÖÆÊý¾ÝÀ´¿ØÖÆÂß¼­£¬Í¨¹ýÂß¼­ÊÂ¼þÀ´¸ü¸ÄÊý¾Ý  Èç¹ûÓÃcss('display','disblock')£¬¾Í´ï²»µ½reactµÄÐ§¹ûÁË
-
- Í¼4.png8.ÔÚº¯ÊýfunctionÀïÃæµÄthis²»Ö¸Ïò×é¼þµÄÁ½ÖÖ½â¾ö·½°¸£º  µÚÒ»ÖÖ£ºÔÚº¯ÊýºóÃæ¼Óthis
-Í¼5.png  µÚ¶þÖÖ£º½«this±£´æÒ»ÏÂ
-Í¼6.png9.¸¸×é¼þ´«Êý¾Ý¸ø×Ó×é¼þ£¬²¢¸üÐÂÔ­À´µÄÎÄ±¾ÄÚÈÝ
-   (1).ÔÚ¸¸×é¼þÖÐÉèÖÃÊý¾Ý£¬²¢½«Òª´«µÝµÄÊý¾ÝÐ´ÔÚ¶ÔÓ¦µÄ<×Ó×é¼þ £¯>ÖÐ
-     Í¼7ÊÇÔÚ¸¸×é¼þÖÐÉèÖÃÒª´«µÝµÄÊý¾Ý
-      Í¼7
-
-
-  £¨2).ÔÚ×Ó×é¼þÖÐ½ÓÊÕÊý¾Ý£¬²¢¸üÐÂÄÃ³öÊý¾ÝäÖÈ¾Ò³Ãæ
-      Í¼8
-
-10.×Ó×é¼þ´«Öµ¸ø¸¸×é¼þ£¬×Ó×é¼þµ÷ÓÃ¸¸×é¼þµÄ·½·¨£¬¶¼ÊÇÒÔpropsµÄÐÎÊ½s
-  Í¼9
-
-
-    
